@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_title">PlantApp</string>
+
+    <string name="onboarding_welcome_title">Welcome to %1$s</string>
+    <string name="onboarding_welcome_body">Identify more than 3000+ plants and 88%% accuracy.</string>
+    <string name="onboarding_welcome_cta">Get Started</string>
+    <string name="onboarding_welcome_legal">By tapping next, you are agreeing to PlantID Terms of Use &amp; Privacy Policy.</string>
+    <string name="onboarding_terms_of_use">Terms of Use</string>
+    <string name="onboarding_privacy_policy">Privacy Policy</string>
+
+    <string name="onboarding_identify_title">Take a photo to identify the plant!</string>
+    <string name="onboarding_identify_highlight">identify</string>
+    <string name="onboarding_identify_cta">Continue</string>
+
+    <string name="onboarding_diagnose_title">Get plant care guides</string>
+    <string name="onboarding_diagnose_highlight">care guides</string>
+    <string name="onboarding_diagnose_cta">Continue</string>
+
+    <string name="onboarding_page_indicator">Page %1$d of %2$d</string>
+
+    <string name="paywall_title">PlantApp Premium</string>
+    <string name="paywall_subtitle">Access All Features</string>
+    <string name="paywall_feature_unlimited_title">Unlimited</string>
+    <string name="paywall_feature_unlimited_body">Plant Identify</string>
+    <string name="paywall_feature_faster_title">Faster</string>
+    <string name="paywall_feature_faster_body">Process</string>
+    <string name="paywall_feature_detailed_title">Detailed</string>
+    <string name="paywall_feature_detailed_body">Plant care</string>
+    <string name="paywall_plan_monthly_title">1 Month</string>
+    <string name="paywall_plan_monthly_body">%1$s/month, auto renewable</string>
+    <string name="paywall_plan_yearly_title">1 Year</string>
+    <string name="paywall_plan_yearly_body">First 3 days free, then %1$s/year</string>
+    <string name="paywall_plan_badge">Save 50%%</string>
+    <string name="paywall_cta">Try free for 3 days</string>
+    <string name="paywall_legal">After the 3-day free trial period you\'ll be charged %1$s per year unless you cancel before the trial expires. Yearly Subscription is Auto-Renewable</string>
+    <string name="paywall_terms">Terms</string>
+    <string name="paywall_privacy">Privacy</string>
+    <string name="paywall_restore">Restore</string>
+    <string name="paywall_close_semantics">Close and continue to home</string>
+    <string name="paywall_plans_unavailable">An unexpected error occurred. Please try again.</string>
+    <string name="paywall_completion_failed">We couldn\'t save your progress, but you can continue.</string>
+</resources>

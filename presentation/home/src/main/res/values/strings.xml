@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_greeting">Hi, plant lover!</string>
+    <string name="home_salutation">Good Afternoon! ⛅</string>
+    <string name="home_search_hint">Search for plants</string>
+    <string name="home_premium_banner_title">FREE Premium Available</string>
+    <string name="home_premium_banner_body">Tap to upgrade your account!</string>
+    <string name="home_questions_error">We couldn\'t load the articles.</string>
+    <string name="home_categories_error">We couldn\'t load the categories.</string>
+    <string name="home_search_empty">No plants match \"%1$s\".</string>
+    <string name="home_category_item_semantics">%1$s category</string>
+
+    <string name="nav_home">Home</string>
+    <string name="nav_diagnose">Diagnose</string>
+    <string name="nav_scan">Scan</string>
+    <string name="nav_my_garden">My Garden</string>
+    <string name="nav_profile">Profile</string>
+</resources>

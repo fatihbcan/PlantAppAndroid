@@ -17,7 +17,22 @@ dependencyResolutionManagement {
 
 rootProject.name = "PlantAppMVI"
 
-include(":core:util :core:presentation :core:build-config :core:designsystem :platform-apis:network :platform-apis:datastore :domain:onboarding :data:onboarding :presentation:onboarding :domain:home :data:home")
-include(":presentation:home")
-include(":framework:app")
 include(":app")
+include(":framework:app")
+
+include(":core:util")
+include(":core:presentation")
+include(":core:designsystem")
+include(":core:build-config")
+
+include(":platform-apis:network")
+include(":platform-apis:datastore")
+
+include(":domain:onboarding")
+include(":domain:home")
+
+include(":data:onboarding")
+include(":data:home")
+
+include(":presentation:onboarding")
+include(":presentation:home")

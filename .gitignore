@@ -1,0 +1,40 @@
+# Build output
+build/
+**/build/
+
+# Gradle
+.gradle/
+.kotlin/
+
+# IDE — IntelliJ / Android Studio
+.idea/
+!.idea/codeStyles/
+!.idea/inspectionProfiles/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local SDK paths (never commit machine-specific paths)
+local.properties
+
+# Captures from profiling
+captures/
+
+# Generated APKs / bundles
+*.apk
+*.aab
+*.ap_
+
+# Gradle wrapper jar is intentionally committed — DO NOT ignore it.
+# !gradle/wrapper/gradle-wrapper.jar
+
+# Logs
+*.log
+
+# Hilt / KSP intermediate (keep build/ ignore above)
+hilt_aggregated_deps/
+
+# Detekt baseline if you generate one (only commit if you intentionally want it)
+# detekt-baseline.xml

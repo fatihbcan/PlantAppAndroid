@@ -1,0 +1,39 @@
+build:
+  maxIssues: 0
+
+complexity:
+  LongMethod:
+    threshold: 60
+  LongParameterList:
+    functionThreshold: 12
+    constructorThreshold: 14     # Props classes legitimately take many fields
+  TooManyFunctions:
+    thresholdInClasses: 20
+    thresholdInFiles: 20
+  CyclomaticComplexMethod:
+    ignoreSingleWhenExpression: true
+
+style:
+  MagicNumber:
+    ignoreEnums: true
+    ignorePropertyDeclaration: true
+    ignoreAnnotated: ['Composable', 'Preview', 'DayNightPreviews']
+  UnusedPrivateMember:
+    ignoreAnnotated: ['Preview', 'DayNightPreviews']
+  ForbiddenComment:
+    comments:
+      - value: 'FIXME:'
+      - value: 'STOPSHIP:'
+  MaxLineLength:
+    maxLineLength: 120
+
+naming:
+  FunctionNaming:
+    ignoreAnnotated: ['Composable']   # Composables are PascalCase by convention
+  # A component and its Props class live in one file by design — the Props
+  # class is the component's signature, and splitting them puts two halves of
+  # one declaration in two places.
+  MatchingDeclarationName:
+    active: false
+  TopLevelPropertyNaming:
+    constantPattern: '[A-Z][_A-Za-z0-9]*'

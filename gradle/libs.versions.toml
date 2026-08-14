@@ -1,0 +1,192 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Version catalog — blessed snapshot from 2026-05-09.
+#
+# All versions in this file were verified compatible together at the time of
+# scaffolding. If you bump anything, mind these coupled pairs (breakage risk):
+#
+#   Kotlin       ↔ KSP            KSP suffix MUST match Kotlin version exactly
+#   Kotlin       ↔ Compose        Compose Compiler bundled with Kotlin 2.0+
+#   AGP          ↔ Gradle         AGP 8.7 needs Gradle 8.9+
+#   AGP          ↔ JDK            JDK 17+ required
+#   Hilt         ↔ KSP            Hilt 2.52+ supports KSP officially
+#   Compose BOM  ↔ Material3      Material3 version is pinned by the BOM
+#
+# To refresh later, re-run /scaffold-android-project --refresh-versions in a
+# scratch directory and diff what comes out — or update individually using
+# https://search.maven.org / https://androidx.tech / Kotlin release notes.
+# ─────────────────────────────────────────────────────────────────────────────
+
+[versions]
+# ─── Toolchain ────────────────────────────────────────────────────────────
+agp                          = "8.7.3"
+kotlin                       = "2.0.21"
+ksp                          = "2.0.21-1.0.28"
+java                         = "17"
+compileSdk                   = "35"
+targetSdk                    = "35"
+minSdk                       = "26"
+
+# ─── Coroutines / async ───────────────────────────────────────────────────
+kotlinxCoroutines            = "1.9.0"
+kotlinxSerialization         = "1.7.3"
+kotlinxCollectionsImmutable  = "0.3.8"
+kotlinxDatetime              = "0.6.1"
+
+# ─── Compose ──────────────────────────────────────────────────────────────
+composeBom                   = "2024.10.01"
+composeActivity              = "1.9.3"
+composeNavigation            = "2.8.4"
+composeHiltNavigation        = "1.2.0"
+composeLifecycle             = "2.8.7"
+
+# ─── Hilt ─────────────────────────────────────────────────────────────────
+hilt                         = "2.52"
+hiltExt                      = "1.2.0"
+
+# ─── Networking ───────────────────────────────────────────────────────────
+retrofit                     = "2.11.0"
+okhttp                       = "4.12.0"
+retrofitKotlinxConverter     = "1.0.0"
+
+# ─── Persistence ──────────────────────────────────────────────────────────
+room                         = "2.6.1"
+roomGradlePlugin             = "2.6.1"      # Must match `room` — used by the Room Gradle plugin for schema export
+datastore                    = "1.1.1"
+
+# ─── DI helpers ───────────────────────────────────────────────────────────
+javaxInject                  = "1"
+
+# ─── Image loading ────────────────────────────────────────────────────────
+coil                         = "2.7.0"
+
+# ─── Logging ──────────────────────────────────────────────────────────────
+timber                       = "5.0.1"
+
+# ─── Splash + adaptive UI ─────────────────────────────────────────────────
+splashscreen                 = "1.0.1"
+coreKtx                      = "1.13.1"
+
+# ─── Testing ──────────────────────────────────────────────────────────────
+junit4                       = "4.13.2"
+mockk                        = "1.13.13"
+kotest                       = "5.9.1"
+turbine                      = "1.1.0"
+androidxJunit                = "1.2.1"
+androidxEspresso             = "3.6.1"
+
+# ─── Quality ──────────────────────────────────────────────────────────────
+detekt                       = "1.23.7"
+
+
+[libraries]
+# ─── Kotlin / coroutines ──────────────────────────────────────────────────
+kotlinx-coroutines-core      = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core",      version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-android   = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android",   version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-test      = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test",      version.ref = "kotlinxCoroutines" }
+kotlinx-serialization-json   = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json",   version.ref = "kotlinxSerialization" }
+kotlinx-datetime             = { module = "org.jetbrains.kotlinx:kotlinx-datetime",             version.ref = "kotlinxDatetime" }
+kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinxCollectionsImmutable" }
+
+# ─── AndroidX core ────────────────────────────────────────────────────────
+androidx-core-ktx            = { module = "androidx.core:core-ktx",            version.ref = "coreKtx" }
+androidx-splashscreen        = { module = "androidx.core:core-splashscreen",   version.ref = "splashscreen" }
+
+# ─── Compose (BOM-driven — leave Compose deps versionless) ───────────────
+compose-bom                  = { module = "androidx.compose:compose-bom",       version.ref = "composeBom" }
+compose-ui                   = { module = "androidx.compose.ui:ui" }
+compose-ui-graphics          = { module = "androidx.compose.ui:ui-graphics" }
+compose-ui-tooling           = { module = "androidx.compose.ui:ui-tooling" }
+compose-ui-tooling-preview   = { module = "androidx.compose.ui:ui-tooling-preview" }
+compose-ui-test-manifest     = { module = "androidx.compose.ui:ui-test-manifest" }
+compose-ui-test-junit4       = { module = "androidx.compose.ui:ui-test-junit4" }
+compose-foundation           = { module = "androidx.compose.foundation:foundation" }
+compose-material3            = { module = "androidx.compose.material3:material3" }
+compose-material-icons       = { module = "androidx.compose.material:material-icons-extended" }
+compose-runtime              = { module = "androidx.compose.runtime:runtime" }
+compose-runtime-livedata     = { module = "androidx.compose.runtime:runtime-livedata" }
+
+compose-activity             = { module = "androidx.activity:activity-compose",                version.ref = "composeActivity" }
+compose-navigation           = { module = "androidx.navigation:navigation-compose",            version.ref = "composeNavigation" }
+compose-hilt-navigation      = { module = "androidx.hilt:hilt-navigation-compose",             version.ref = "composeHiltNavigation" }
+compose-lifecycle-viewmodel  = { module = "androidx.lifecycle:lifecycle-viewmodel-compose",    version.ref = "composeLifecycle" }
+compose-lifecycle-runtime    = { module = "androidx.lifecycle:lifecycle-runtime-compose",      version.ref = "composeLifecycle" }
+androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx",        version.ref = "composeLifecycle" }
+androidx-lifecycle-runtime   = { module = "androidx.lifecycle:lifecycle-runtime-ktx",          version.ref = "composeLifecycle" }
+
+# ─── Hilt ─────────────────────────────────────────────────────────────────
+hilt-android                 = { module = "com.google.dagger:hilt-android",                    version.ref = "hilt" }
+hilt-compiler                = { module = "com.google.dagger:hilt-compiler",                   version.ref = "hilt" }
+hilt-ext-work                = { module = "androidx.hilt:hilt-work",                           version.ref = "hiltExt" }
+hilt-ext-compiler            = { module = "androidx.hilt:hilt-compiler",                       version.ref = "hiltExt" }
+
+# ─── Networking ───────────────────────────────────────────────────────────
+retrofit                     = { module = "com.squareup.retrofit2:retrofit",                   version.ref = "retrofit" }
+retrofit-kotlinx-converter   = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofitKotlinxConverter" }
+okhttp                       = { module = "com.squareup.okhttp3:okhttp",                       version.ref = "okhttp" }
+okhttp-logging-interceptor   = { module = "com.squareup.okhttp3:logging-interceptor",          version.ref = "okhttp" }
+
+# ─── Room ─────────────────────────────────────────────────────────────────
+room-runtime                 = { module = "androidx.room:room-runtime",                        version.ref = "room" }
+room-ktx                     = { module = "androidx.room:room-ktx",                            version.ref = "room" }
+room-compiler                = { module = "androidx.room:room-compiler",                       version.ref = "room" }
+room-testing                 = { module = "androidx.room:room-testing",                        version.ref = "room" }
+room-gradlePlugin            = { module = "androidx.room:room-gradle-plugin",                  version.ref = "roomGradlePlugin" }
+
+# ─── DI helpers (used by pure-Kotlin domain modules; Hilt brings javax.inject transitively elsewhere) ──
+javax-inject                 = { module = "javax.inject:javax.inject",                         version.ref = "javaxInject" }
+
+# ─── DataStore ────────────────────────────────────────────────────────────
+datastore-preferences        = { module = "androidx.datastore:datastore-preferences",          version.ref = "datastore" }
+datastore-core               = { module = "androidx.datastore:datastore",                      version.ref = "datastore" }
+
+# ─── Coil ─────────────────────────────────────────────────────────────────
+coil-compose                 = { module = "io.coil-kt:coil-compose",                           version.ref = "coil" }
+
+# ─── Logging ──────────────────────────────────────────────────────────────
+timber                       = { module = "com.jakewharton.timber:timber",                     version.ref = "timber" }
+
+# ─── Testing ──────────────────────────────────────────────────────────────
+junit4                       = { module = "junit:junit",                                       version.ref = "junit4" }
+mockk                        = { module = "io.mockk:mockk",                                    version.ref = "mockk" }
+mockk-android                = { module = "io.mockk:mockk-android",                            version.ref = "mockk" }
+kotest-assertions            = { module = "io.kotest:kotest-assertions-core",                  version.ref = "kotest" }
+turbine                      = { module = "app.cash.turbine:turbine",                          version.ref = "turbine" }
+androidx-junit               = { module = "androidx.test.ext:junit",                           version.ref = "androidxJunit" }
+androidx-espresso            = { module = "androidx.test.espresso:espresso-core",              version.ref = "androidxEspresso" }
+
+# ─── Quality ──────────────────────────────────────────────────────────────
+detekt-formatting            = { module = "io.gitlab.arturbosch.detekt:detekt-formatting",     version.ref = "detekt" }
+detekt-cli                   = { module = "io.gitlab.arturbosch.detekt:detekt-cli",            version.ref = "detekt" }
+
+# ─── Plugin classpath entries (for build-logic/convention) ────────────────
+android-gradlePlugin         = { module = "com.android.tools.build:gradle",                    version.ref = "agp" }
+kotlin-gradlePlugin          = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin",         version.ref = "kotlin" }
+ksp-gradlePlugin             = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+hilt-gradlePlugin            = { module = "com.google.dagger:hilt-android-gradle-plugin",      version.ref = "hilt" }
+detekt-gradlePlugin          = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin",  version.ref = "detekt" }
+
+
+[bundles]
+# Pull these into a module with a single line: `implementation(libs.bundles.compose)`
+compose                      = ["compose-ui", "compose-ui-graphics", "compose-ui-tooling-preview", "compose-foundation", "compose-material3", "compose-material-icons", "compose-runtime", "compose-activity", "compose-lifecycle-viewmodel", "compose-lifecycle-runtime"]
+compose-debug                = ["compose-ui-tooling", "compose-ui-test-manifest"]
+test-jvm                     = ["junit4", "mockk", "kotest-assertions", "turbine", "kotlinx-coroutines-test"]
+# `compose-ui-test-junit4` is deliberately NOT here: it is versioned by the
+# Compose BOM, which only the compose convention plugin adds. In a non-Compose
+# Android module it would resolve to no version at all.
+test-android                 = ["androidx-junit", "androidx-espresso", "mockk-android"]
+retrofit-stack               = ["retrofit", "retrofit-kotlinx-converter", "okhttp", "okhttp-logging-interceptor", "kotlinx-serialization-json"]
+room-stack                   = ["room-runtime", "room-ktx"]
+
+
+[plugins]
+android-application          = { id = "com.android.application",                               version.ref = "agp" }
+android-library              = { id = "com.android.library",                                   version.ref = "agp" }
+kotlin-android               = { id = "org.jetbrains.kotlin.android",                          version.ref = "kotlin" }
+kotlin-jvm                   = { id = "org.jetbrains.kotlin.jvm",                              version.ref = "kotlin" }
+kotlin-serialization         = { id = "org.jetbrains.kotlin.plugin.serialization",             version.ref = "kotlin" }
+compose-compiler             = { id = "org.jetbrains.kotlin.plugin.compose",                   version.ref = "kotlin" }
+ksp                          = { id = "com.google.devtools.ksp",                               version.ref = "ksp" }
+hilt                         = { id = "com.google.dagger.hilt.android",                        version.ref = "hilt" }
+detekt                       = { id = "io.gitlab.arturbosch.detekt",                           version.ref = "detekt" }
+androidx-room                = { id = "androidx.room",                                          version.ref = "roomGradlePlugin" }

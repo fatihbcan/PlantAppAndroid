@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="MissingTranslation" severity="error" />
+    <issue id="UnusedResources" severity="error" />
+    <issue id="ConvertToWebp" severity="warning" />
+
+    <!--
+      Known and deliberate. The design file exports its icons and artwork at 1x
+      for a 360dp frame, so they ship in drawable-mdpi and Android scales them
+      up per density — exactly what the Flutter build of this app does with the
+      same files. They soften on a dense screen. A 3x re-export from Figma is a
+      straight file swap into drawable-xxhdpi with no code change, which is why
+      this is recorded rather than worked around.
+    -->
+    <issue id="IconMissingDensityFolder" severity="informational" />
+
+    <!--
+      "A newer version is available" checks, downgraded because with
+      warningsAsErrors they make a build that passes today fail tomorrow with
+      no change to the code — the version catalog is a compatibility-verified
+      set (Kotlin↔KSP, AGP↔Gradle, Hilt↔KSP are all coupled), so upgrades are
+      a deliberate, tested change rather than something a lint run should force.
+    -->
+    <issue id="AndroidGradlePluginVersion" severity="informational" />
+    <issue id="GradleDependency" severity="informational" />
+    <issue id="NewerVersionAvailable" severity="informational" />
+</lint>

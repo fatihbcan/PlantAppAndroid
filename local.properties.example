@@ -1,0 +1,7 @@
+# This file is per-machine and should NOT be committed (it's in .gitignore).
+# Android Studio will set sdk.dir on first sync. If you build from CLI without
+# Android Studio, uncomment and point at your SDK location:
+#
+#   macOS:    sdk.dir=/Users/<you>/Library/Android/sdk
+#   Linux:    sdk.dir=/home/<you>/Android/Sdk
+#   Windows:  sdk.dir=C\:\\Users\\<you>\\AppData\\Local\\Android\\Sdk

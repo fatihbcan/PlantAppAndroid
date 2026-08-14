@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A leaf, drawn as a vector so the launcher icon stays crisp at every
+     density. The design file exports no app icon. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M74,32c0,0 -6,-2 -16,-2c-14,0 -24,10 -24,22c0,7 3,12 7,16l-8,8l4,4l8,-8c4,3 9,5 15,5c13,0 22,-11 22,-26C82,42 74,32 74,32zM54,64c0,-11 8,-20 18,-22c1,3 2,6 2,9c0,12 -7,21 -17,21c-2,0 -3,0 -5,-1C53,69 54,67 54,64z" />
+</vector>

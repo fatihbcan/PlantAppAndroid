@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- The only XML theme in the project. Compose owns everything once the
+         splash hands over; this exists because the system needs a theme
+         before any Compose code runs. -->
+    <style name="Theme.PlantAppMVI.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="postSplashScreenTheme">@style/Theme.PlantAppMVI</item>
+    </style>
+
+    <!-- Transparent system bars: the Activity calls enableEdgeToEdge() and
+         every screen manages its own insets. -->
+    <style name="Theme.PlantAppMVI" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
+</resources>

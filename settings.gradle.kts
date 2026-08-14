@@ -20,3 +20,4 @@ rootProject.name = "PlantAppMVI"
 include(":core:util")
 include(":core:presentation")
 include(":core:build-config")
+include(":core:designsystem")

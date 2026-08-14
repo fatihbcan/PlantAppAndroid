@@ -21,3 +21,5 @@ include(":core:util :core:presentation :core:build-config :core:designsystem :pl
 include(":domain:onboarding")
 include(":data:onboarding")
 include(":presentation:onboarding")
+include(":domain:home")
+include(":data:home")

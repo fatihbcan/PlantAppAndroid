@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -41,6 +43,13 @@ android {
     }
 
     buildFeatures { compose = true }
+}
+
+// Same reason as in the android.library convention plugin: without this,
+// Kotlin targets whatever JDK runs Gradle and disagrees with the Java target
+// above the moment the build is opened in Android Studio.
+kotlin {
+    compilerOptions { jvmTarget.set(JvmTarget.JVM_17) }
 }
 
 dependencies {

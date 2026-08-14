@@ -6,6 +6,9 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 /** Applied to every module under `data`, `presentation`, `core` and `platform-apis`. */
 class AndroidLibraryConventionPlugin : Plugin<Project> {
@@ -38,6 +41,18 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             }
 
             testOptions.unitTests.isIncludeAndroidResources = true
+        }
+
+        // Kotlin must be pinned to the same target as Java above, or it
+        // silently follows whichever JDK happens to be running Gradle. That
+        // makes the build depend on the developer's setup: it passes on a
+        // JDK 17 command line and fails in Android Studio, whose bundled JDK
+        // is 21, with "Inconsistent JVM-target compatibility" from every KSP
+        // task. `withType` rather than the Kotlin extension because the KSP
+        // tasks are KotlinCompile instances too, and they are the ones that
+        // trip the check first.
+        tasks.withType<KotlinCompile>().configureEach {
+            compilerOptions.jvmTarget.set(JvmTarget.JVM_17)
         }
 
         dependencies {

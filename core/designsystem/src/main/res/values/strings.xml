@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Shared across features. Anything named by only one feature belongs in
+         that feature's own strings.xml instead. -->
+    <string name="action_retry">Try again</string>
+    <string name="action_clear_search">Clear search</string>
+
+    <string name="error_no_connection">No internet connection</string>
+    <string name="error_generic">Something went wrong</string>
+</resources>

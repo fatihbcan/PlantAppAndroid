@@ -19,3 +19,5 @@ rootProject.name = "PlantAppMVI"
 
 include(":core:util :core:presentation :core:build-config :core:designsystem :platform-apis:network :platform-apis:datastore :domain:onboarding :data:onboarding :presentation:onboarding :domain:home :data:home")
 include(":presentation:home")
+include(":framework:app")
+include(":app")

@@ -78,4 +78,16 @@ class HomeScreenPropsTest {
 
         props.query shouldBe "fer"
     }
+
+    @Test
+    fun `the premium strip carries the handler that opens the paywall`() {
+        // The strip is the screen's one way out, and it was drawn as a button
+        // for a while before it was wired to anything.
+        var opened = false
+
+        mapStateToProps(loaded, onPremiumBannerClick = { opened = true })
+            .onPremiumBannerClick()
+
+        opened shouldBe true
+    }
 }

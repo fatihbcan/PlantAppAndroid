@@ -58,6 +58,7 @@ internal data class HomeScreenProps(
     val onRefresh: () -> Unit = {},
     val onQueryChange: (String) -> Unit = {},
     val onClearSearch: () -> Unit = {},
+    val onPremiumBannerClick: () -> Unit = {},
 ) {
     companion object {
         fun preview() = mapStateToProps(
@@ -101,6 +102,7 @@ internal fun mapStateToProps(
     onRefresh: () -> Unit = {},
     onQueryChange: (String) -> Unit = {},
     onClearSearch: () -> Unit = {},
+    onPremiumBannerClick: () -> Unit = {},
 ): HomeScreenProps = HomeScreenProps(
     showInitialLoading = state.isInitialLoading,
     greeting = TextResource.fromId(R.string.home_greeting),
@@ -126,6 +128,7 @@ internal fun mapStateToProps(
     onRefresh = onRefresh,
     onQueryChange = onQueryChange,
     onClearSearch = onClearSearch,
+    onPremiumBannerClick = onPremiumBannerClick,
 )
 
 private fun Question.toProps() = QuestionCardProps(

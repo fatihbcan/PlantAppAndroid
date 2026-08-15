@@ -66,6 +66,7 @@ internal fun HomeScreen(
                 onRefresh = viewModel::onRefresh,
                 onQueryChange = viewModel::onQueryChange,
                 onClearSearch = viewModel::onClearSearch,
+                onPremiumBannerClick = viewModel::onPremiumBannerClick,
             ),
         )
     }

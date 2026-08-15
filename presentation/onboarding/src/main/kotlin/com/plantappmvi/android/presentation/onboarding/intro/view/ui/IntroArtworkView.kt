@@ -8,15 +8,18 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.BoxWithConstraintsScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -122,21 +125,45 @@ private fun IdentifyArtwork(modifier: Modifier = Modifier) {
 
         val phoneWidth = boxWidth * IdentifyPhoneWidthFactor
         val phoneHeight = phoneWidth * PhoneAspect
+        val phoneTop = boxHeight - phoneHeight - boxHeight * PhoneLiftFactor
 
         // The plant stands behind the phone and only its crown shows, which is
         // what the design's silhouette depends on.
-        val crownWidth = phoneWidth * 0.72f
-        Image(
-            painter = painterResource(R.drawable.img_onboarding_welcome_plant),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            alignment = Alignment.TopCenter,
+        //
+        // It is drawn whole at the phone's own width and clipped to the band
+        // above it, which is what keeps only the leaves in view: sizing it to
+        // the band instead — the artwork box less a share of the phone — left
+        // half the plant, stems and all, standing above the mockup, and cost
+        // it the sides of its leaves to the crop besides.
+        //
+        // Phone width exactly, and the band runs a little *under* the phone's
+        // top edge: the clip cuts the plant flat, and the phone has to be wide
+        // and high enough to hide that cut. A crown any wider leaves the flat
+        // edge showing beside the mockup.
+        val crownWidth = phoneWidth
+        val crownHeight = crownWidth / PlantAspect
+        Box(
             modifier = Modifier
-                .offset(x = (boxWidth - crownWidth) / 2)
-                .size(width = crownWidth, height = boxHeight - phoneHeight * 0.62f),
-        )
+                .offset(x = (boxWidth - phoneWidth) / 2)
+                .size(width = phoneWidth, height = phoneTop + phoneHeight * CrownTuckFactor)
+                .clipToBounds(),
+        ) {
+            Image(
+                painter = painterResource(R.drawable.img_onboarding_welcome_plant),
+                contentDescription = null,
+                contentScale = ContentScale.FillBounds,
+                // The plant is deliberately taller than the band that clips
+                // it, so it has to be measured unbounded and pinned to the
+                // band's top edge. `size` on its own is coerced back into the
+                // band and squashes the whole plant into it; `requiredSize`
+                // escapes the constraints but then centres what it drew, which
+                // shows the plant's middle instead of its crown.
+                modifier = Modifier
+                    .wrapContentSize(align = Alignment.TopCenter, unbounded = true)
+                    .size(width = crownWidth, height = crownHeight),
+            )
+        }
 
-        val phoneTop = boxHeight - phoneHeight - boxHeight * PhoneLiftFactor
         Box(
             modifier = Modifier
                 .offset(x = (boxWidth - phoneWidth) / 2, y = phoneTop)
@@ -194,10 +221,15 @@ private fun CareGuidesArtwork(modifier: Modifier = Modifier) {
                 .background(PhoneBezelColor)
                 .padding(start = bezel, top = bezel, end = bezel),
         ) {
+            // Crop, not FillWidth: the export is not as tall as the bezel it
+            // sits in, so scaling it by width alone left a black strip of
+            // bezel between the screenshot and the call to action below.
+            // Covering the box hides that strip, at the cost of a sliver off
+            // the export's bottom — which is under the button anyway.
             Image(
                 painter = painterResource(R.drawable.img_onboarding_care_screen),
                 contentDescription = null,
-                contentScale = ContentScale.FillWidth,
+                contentScale = ContentScale.Crop,
                 alignment = Alignment.TopCenter,
                 modifier = Modifier
                     .fillMaxSize()
@@ -248,6 +280,9 @@ private const val ScanFrameRiseFactor = 0.11f
 private const val PhoneAspect = 320f / 197f
 private const val IdentifyPhoneWidthFactor = 0.69f
 private const val PhoneLiftFactor = 0.05f
+
+/** How far the crown runs on under the phone, so its clipped edge is hidden. */
+private const val CrownTuckFactor = 0.04f
 
 private const val CarePhoneWidthFactor = 0.72f
 private const val CareCardsWidthFactor = 0.40f

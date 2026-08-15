@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -120,13 +121,18 @@ private fun PaywallBody(props: PaywallScreenProps) {
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         item { PaywallHero(props) }
 
-        items(props.plans, key = { it.id }) { plan ->
+        // The gap above the first tile is the design's own break between the
+        // feature strip and the plans, and it is wider than the one between
+        // the tiles. Spacing the list evenly instead left the strip crowding
+        // the first tile and a stray gap under the last one.
+        itemsIndexed(props.plans, key = { _, plan -> plan.id }) { index, plan ->
             PaywallPlanTile(
                 props = plan,
                 onClick = { props.onPlanClick(plan.id) },
                 modifier = Modifier.padding(
-                    horizontal = AppTheme.dimens.pageGutter,
-                    vertical = AppTheme.dimens.spaceSm,
+                    start = AppTheme.dimens.pageGutter,
+                    end = AppTheme.dimens.pageGutter,
+                    top = if (index == 0) AppTheme.dimens.spaceXl else AppTheme.dimens.spaceLg,
                 ),
             )
         }
@@ -228,7 +234,6 @@ private fun PremiumTitle(props: PaywallScreenProps) {
 private fun PaywallFooter(props: PaywallScreenProps) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.spaceMd),
         modifier = Modifier
             .padding(
                 start = AppTheme.dimens.pageGutter,
@@ -252,9 +257,13 @@ private fun PaywallFooter(props: PaywallScreenProps) {
             textAlign = TextAlign.Center,
             style = AppTheme.typography.caption,
             color = AppTheme.colors.onPremiumMuted.copy(alpha = LegalAlpha),
+            modifier = Modifier.padding(top = AppTheme.dimens.spaceMd),
         )
 
-        Row(horizontalArrangement = Arrangement.spacedBy(AppTheme.dimens.spaceSm)) {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(AppTheme.dimens.spaceSm),
+            modifier = Modifier.padding(top = AppTheme.dimens.spaceSm),
+        ) {
             props.footerLinks.forEachIndexed { index, link ->
                 if (index > 0) {
                     Text(

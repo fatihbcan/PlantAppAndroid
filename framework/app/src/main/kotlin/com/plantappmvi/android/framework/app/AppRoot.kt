@@ -43,9 +43,20 @@ fun AppRoot(
                 is NavigationCommand.NavigateTo -> navController.navigate(
                     command.directions.route,
                 ) {
-                    launchSingleTop = command.directions.isSingleTop
-                    command.directions.popUpToRoute?.let { route ->
-                        popUpTo(route) { inclusive = command.directions.isPopUpToInclusive }
+                    val directions = command.directions
+                    launchSingleTop = directions.isSingleTop
+                    if (directions.isClearingBackStack) {
+                        // The graph itself, inclusively — that is what empties
+                        // the stack whatever it holds. Naming a route only
+                        // works when that route is on it, and the graph's own
+                        // start destination is not: it is fixed at launch by
+                        // the onboarding gate, so within a session that
+                        // finished onboarding it is a route already popped.
+                        popUpTo(navController.graph.id) { inclusive = true }
+                    } else {
+                        directions.popUpToRoute?.let { route ->
+                            popUpTo(route) { inclusive = directions.isPopUpToInclusive }
+                        }
                     }
                 }
 

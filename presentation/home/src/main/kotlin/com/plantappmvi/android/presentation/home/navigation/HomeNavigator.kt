@@ -3,11 +3,14 @@ package com.plantappmvi.android.presentation.home.navigation
 import com.plantappmvi.android.core.presentation.navigation.BasicNavigator
 
 /**
- * Home declares no destinations of its own.
+ * Where home can go.
  *
- * The design's bottom bar has five, but only Home has a screen in this case,
- * so there is nothing yet to navigate to. The interface still exists because
- * that is where a destination will be declared when one arrives — and because
- * `back()` from [BasicNavigator] is what closes the app from the root screen.
+ * The design's bottom bar has five destinations, but only Home has a screen in
+ * this case, so none of those are declared here. The one live destination is
+ * the paywall, which the "FREE Premium Available" strip opens — home names it
+ * without knowing it belongs to another feature, and the composition root
+ * resolves it to a route.
  */
-interface HomeNavigator : BasicNavigator
+interface HomeNavigator : BasicNavigator {
+    fun paywall()
+}

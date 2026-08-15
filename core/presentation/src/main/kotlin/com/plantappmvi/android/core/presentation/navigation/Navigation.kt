@@ -14,15 +14,18 @@ interface BasicNavigator {
 /**
  * A destination plus how to get there.
  *
- * [popUpToRoute] with [isPopUpToInclusive] is how a flow replaces the stack
- * rather than growing it — the paywall completing onboarding must leave no
- * intro page behind for the system back gesture to find.
+ * [popUpToRoute] with [isPopUpToInclusive] is how a flow replaces part of the
+ * stack rather than growing it. [isClearingBackStack] is the stronger form —
+ * [route] becomes the only entry left — for a destination that has to be the
+ * new root no matter which flow reached it. It takes precedence over
+ * [popUpToRoute].
  */
 data class NavigationDirections(
     val route: String,
     val popUpToRoute: String? = null,
     val isPopUpToInclusive: Boolean = false,
     val isSingleTop: Boolean = false,
+    val isClearingBackStack: Boolean = false,
 )
 
 data class NavigationBackDirections(

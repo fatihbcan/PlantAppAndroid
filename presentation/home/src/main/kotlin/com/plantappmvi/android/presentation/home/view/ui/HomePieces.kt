@@ -3,6 +3,7 @@ package com.plantappmvi.android.presentation.home.view.ui
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -140,7 +141,9 @@ internal fun HomePremiumBanner(
             .height(BannerHeight)
             .clip(AppTheme.shapes.card)
             .background(AppTheme.colors.bannerSurface)
-            .semantics { role = Role.Button }
+            // A real surface, so it keeps its ripple — unlike the bare glyphs
+            // and artwork that use `noRippleClickable`.
+            .clickable(role = Role.Button, onClick = props.onPremiumBannerClick)
             .padding(horizontal = AppTheme.dimens.spaceLg),
     ) {
         AppIcon(
@@ -248,9 +251,14 @@ internal fun CategoryTile(
     ) {
         // The artwork sits in the lower right and is allowed to run to the
         // cell's edges rather than being inset with the title.
+        //
+        // Transparent placeholder: the artwork is *fitted* into this box, so
+        // it never covers it. The component's default grey would show around
+        // the plant as a block over most of the white cell.
         AppAsyncImage(
             url = props.imageUrl,
             contentScale = ContentScale.Fit,
+            placeholderColor = Color.Transparent,
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(start = AppTheme.dimens.spaceXxl, top = AppTheme.dimens.spaceXl)

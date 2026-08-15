@@ -58,6 +58,21 @@ internal class HomeViewModel @Inject constructor(
 
     fun onRefresh() = load()
 
+    /**
+     * The premium strip is the one place home leaves itself.
+     *
+     * Guarded by [launchNavigationOnce] rather than a plain call: the strip is
+     * a wide target in a scrolling list, and a double tap would otherwise push
+     * two paywalls. The guard re-arms on the next `onResume`, so coming back
+     * from the paywall leaves the strip live again.
+     */
+    fun onPremiumBannerClick() {
+        launchNavigationOnce {
+            navigator.paywall()
+            true
+        }
+    }
+
     fun onQueryChange(query: String) {
         if (query == state.value.query) return
         sendEvent(HomeScreenEvent.SearchQueryChanged(query))
